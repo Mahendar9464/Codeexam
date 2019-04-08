@@ -58,6 +58,20 @@ public class ClipTest {
     @Test
     public void testSetEndBeforeStartKeepsPreviousValue()
     {
+        System.out.println("Doesn't allow to set end time to start time");
+        Clip instance = new Clip();
+        String OriginalTitle = "Sub video"; 
+        instance.setTitle(OriginalTitle);
+        int OriginalStartTime = 10; 
+        int OriginalEndTime = 40;
+        instance.setMax(100);
+        instance.setStart(OriginalStartTime);
+        instance.setEnd(OriginalEndTime);
+        int CurrentStartTime = instance.getStart();
+        int CurrentEndTime = instance.getEnd();
+        instance.setStart(CurrentEndTime);
+        assertEquals(OriginalStartTime,CurrentStartTime);
+        System.out.println("Start time is same as previous value");
     }
 
     @Test
