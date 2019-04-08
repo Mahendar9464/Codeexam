@@ -348,6 +348,15 @@ public class MediaControl extends VBox {
         btnNudgeSelectedStartBack.setStyle("-fx-max-width:infinity");
         btnNudgeSelectedStartBack.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent e) {
+                
+                Clip p = table.getSelectionModel().getSelectedItem();
+                if (p==null) return;
+             
+                int currentPosition = p.getStart();
+                int reducedPosition = currentPosition-1;
+                
+                p.setStart(reducedPosition);
+                doTableRefresh(table);
             }
         });
         final Button btnNudgeSelectedStartForward = new Button(">>");
