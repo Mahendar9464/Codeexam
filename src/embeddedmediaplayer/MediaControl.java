@@ -308,6 +308,7 @@ public class MediaControl extends VBox {
         
         //ADDITIONAL FUNCTIONALITY
         //changes the position of the master
+        
         final Button btnNudgeBack = new Button("<<");
         btnNudgeBack.setTooltip(new Tooltip("Nudge Master Back"));
         btnNudgeBack.setStyle("-fx-max-width:infinity");
@@ -321,15 +322,23 @@ public class MediaControl extends VBox {
         btnNudgeForward.setStyle("-fx-max-width:infinity");
         btnNudgeForward.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent e) {  
+                
             }
         });
         
         //changes the case of the selected
+        
         final Button btnAllCapsSelected= new Button("UPPER");
         btnAllCapsSelected.setTooltip(new Tooltip("Make Selected Item Upper Case"));
         btnAllCapsSelected.setStyle("-fx-max-width:infinity");
         btnAllCapsSelected.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent e) {
+                Clip p = table.getSelectionModel().getSelectedItem();
+                if (p==null) return;
+                String title= p.getTitle();
+                p.setTitle(title.toUpperCase());
+                doTableRefresh(table);
+                
             }
         });
         
@@ -501,11 +510,11 @@ public class MediaControl extends VBox {
           
           //ADDITIONAL FUNCTIONALITY
           
-          //gridBox.add(btnNudgeBack,6,1,1,1);
-          //gridBox.add(btnNudgeForward,6,1,1,1);
-          //gridBox.add(btnAllCaps,8,1,1,1);
-          //gridBox.add(btnNudgeSelectedStartBack,8,1,1,1);
-          //gridBox.add(btnNudgeSelectedStartForward,8,1,1,1);
+          gridBox.add(btnNudgeBack,6,1,1,1);
+          gridBox.add(btnNudgeForward,7,1,1,1);
+          gridBox.add(btnAllCaps,8,1,1,1);
+          gridBox.add(btnNudgeSelectedStartBack,9,1,1,1);
+          gridBox.add(btnNudgeSelectedStartForward,10,1,1,1);
           
           
          
